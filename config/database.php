@@ -1,13 +1,12 @@
 <?php
-// Ubah nilai ini sesuai connection string PostgreSQL Supabase Anda.
-define('DB_HOST', 'db.iehvfnpjicvhvzglmpjz.supabase.co');
-define('DB_PORT', '5432');
-define('DB_NAME', 'postgres');
-define('DB_USER', 'postgres');
-define('DB_PASS', 'p?tRANp.2CV#*fq');
+define('DB_HOST', getenv('DB_HOST') ?: 'db.iehvfnpjicvhvzglmpjz.supabase.co');
+define('DB_PORT', getenv('DB_PORT') ?: '5432');
+define('DB_NAME', getenv('DB_NAME') ?: 'postgres');
+define('DB_USER', getenv('DB_USER') ?: 'postgres');
+define('DB_PASS', getenv('DB_PASS') ?: 'p?tRANp.2CV#*fq');
 
 // Untuk XAMPP gunakan: http://localhost/perpustakaan
-define('BASE_URL', 'http://localhost/perpustakaan');
+define('BASE_URL', getenv('BASE_URL') ?: 'http://localhost/perpustakaan');
 
 try {
     $dsn = 'pgsql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';sslmode=require';
