@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1000" viewBox="0 0 720 1000">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#10252c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect width="720" height="1000" rx="34" fill="url(#g)"/>
+  <circle cx="590" cy="130" r="150" fill="#9bd672" opacity=".22"/>
+  <circle cx="120" cy="850" r="210" fill="#9bd672" opacity=".16"/>
+  <rect x="78" y="96" width="562" height="808" rx="28" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="4"/>
+  <path d="M150 230c78-42 150-42 216 0 66-42 138-42 216 0v410c-78-42-150-42-216 0-66-42-138-42-216 0z" fill="rgba(255,255,255,.16)" filter="url(#shadow)"/>
+  <path d="M366 230v410" stroke="rgba(255,255,255,.34)" stroke-width="5"/>
+  <text x="100" y="170" fill="#9bd672" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="800" letter-spacing="4">PERPUSTAKAAN</text>
+  <foreignObject x="100" y="360" width="520" height="260">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:Poppins,Arial,sans-serif;color:white;font-size:58px;line-height:1.05;font-weight:800;word-wrap:break-word;">Clean Code</div>
+  </foreignObject>
+  <text x="100" y="745" fill="rgba(255,255,255,.82)" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="700">Robert C. Martin</text>
+  <rect x="100" y="800" width="190" height="10" rx="5" fill="#9bd672"/>
+</svg>
