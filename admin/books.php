@@ -6,8 +6,8 @@ function upload_to_supabase($fileKey, $bucket) {
     if (!isset($_FILES[$fileKey]) || $_FILES[$fileKey]['error'] !== UPLOAD_ERR_OK) {
         return null;
     }
-    $file = $_FILES[$fileKey];
-    $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $file     = $_FILES[$fileKey];
+    $ext      = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $filename = 'img_' . uniqid() . mt_rand() . '.' . $ext;
 
     $supabaseUrl = rtrim(getenv('SUPABASE_URL') ?: 'https://iehvfnpjicvhvzglmpjz.supabase.co', '/');
@@ -25,8 +25,9 @@ function upload_to_supabase($fileKey, $bucket) {
             'x-upsert: true'
         ]
     ]);
-    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_exec($ch);
+
+    curl_exec($ch); // ← exec dulu
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE); // ← baru ambil code
     curl_close($ch);
 
     return ($code >= 200 && $code < 300)
