@@ -72,7 +72,7 @@ $books = $stmt->fetchAll();
             <?php foreach ($books as $book): ?>
                 <article class="book-card">
                     <a href="<?= url('book.php?id=' . $book['id']) ?>">
-                        <img src="<?= e($book['cover'] ? url($book['cover']) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">
+                    <img src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">
                     </a>
                     <div class="book-body">
                         <span class="badge"><?= e($book['category'] ?? 'Umum') ?></span>

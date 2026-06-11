@@ -20,7 +20,7 @@ if (!$book) {
 ?>
 
 <section class="detail-layout">
-    <img class="detail-cover" src="<?= e($book['cover'] ? url($book['cover']) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">
+<img src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">
     <div class="detail-content">
         <span class="badge"><?= e($book['category'] ?? 'Umum') ?></span>
         <h1><?= e($book['title']) ?></h1>
