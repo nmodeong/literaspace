@@ -298,7 +298,8 @@ $books = $stmt->fetchAll();
             <tbody>
                 <?php foreach ($books as $book): ?>
                     <tr>
-                    <img class="thumb" src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt="">                        <td><strong><?= e($book['title']) ?></strong><br><span class="muted"><?= e($book['author']) ?></span></td>
+                     <td><img class="thumb" src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt=""></td>
+                        <td><strong><?= e($book['title']) ?></strong><br><span class="muted"><?= e($book['author']) ?></span></td>
                         <td><?= e($book['category'] ?? 'Umum') ?></td>
                         <td><?= e($book['available_stock']) ?> / <?= e($book['stock']) ?></td>
                         <td class="actions">

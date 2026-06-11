@@ -9,24 +9,15 @@ $aboutStats = [
     'categories' => (int) $pdo->query('select count(*) from categories')->fetchColumn(),
 ];
 
+// Satu entri foto kelompok
 $team = [
-    [
-        'name' => 'Nabil Modeong',
-        'role' => 'Backend Developer & Database Designer',
-        'photo' => 'assets/img/nabil.jpeg',
-        'initial' => 'D1',
-    ],
-    [
-        'name' => 'Satria Mandagi',
-        'role' => 'Frontend Developer',
-        'photo' => 'assets/img/team-2.jpg',
-        'initial' => 'D2',
-    ],
-    [
-        'name' => 'Arlen Tombey',
-        'role' => 'Project Manager',
-        'photo' => 'assets/img/team-3.jpg',
-        'initial' => 'D3',
+    'photo' => 'assets/img/tim.jpeg',
+    'caption' => 'Tim Pengembang',
+    'members' => [
+        ['name' => 'Arlen Tombey',   'role' => 'Project Manager'],
+        ['name' => 'Satria Mandagi', 'role' => 'Frontend Developer'],
+        ['name' => 'Nabil Modeong',  'role' => 'Backend Developer & Database Designer'],
+       
     ],
 ];
 ?>
@@ -76,17 +67,31 @@ $team = [
         </div>
     </div>
 
-    <div class="team-grid">
-        <?php foreach ($team as $member): ?>
-            <article class="team-card">
-                <div class="team-photo">
-                    <img src="<?= e(url($member['photo'])) ?>" alt="Foto <?= e($member['name']) ?>" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                    <span><?= e($member['initial']) ?></span>
-                </div>
-                <h3><?= e($member['name']) ?></h3>
-                <p><?= e($member['role']) ?></p>
-            </article>
-        <?php endforeach; ?>
+    <div class="team-group-wrap">
+        <div class="team-group-photo">
+            <img
+                src="<?= e(url($team['photo'])) ?>"
+                alt="Foto Tim Pengembang"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+            <!-- Fallback jika foto tidak ditemukan -->
+            <div class="team-photo-fallback" style="display:none;">
+                <span>📷</span>
+                <p>Foto tim belum tersedia</p>
+            </div>
+        </div>
+
+        <div class="team-group-info">
+            <h3><?= e($team['caption']) ?></h3>
+            <ul class="team-member-list">
+                <?php foreach ($team['members'] as $member): ?>
+                    <li>
+                        <span class="member-name"><?= e($member['name']) ?></span>
+                        <span class="member-role"><?= e($member['role']) ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
     </div>
 </section>
 
