@@ -5,7 +5,6 @@ define('DB_NAME', getenv('DB_NAME') ?: 'postgres');
 define('DB_USER', getenv('DB_USER') ?: 'postgres');
 define('DB_PASS', getenv('DB_PASS') ?: 'p?tRANp.2CV#*fq');
 
-// Untuk XAMPP gunakan: http://localhost/perpustakaan
 define('BASE_URL', getenv('BASE_URL') ?: 'http://localhost/perpustakaan');
 
 try {

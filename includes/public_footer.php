@@ -2,7 +2,7 @@
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
-            <a class="brand" href="<?= url('index.php') ?>">PERPUSTAKAAN MODEREN</a>
+            <a class="brand" href="<?= url('index.php') ?>">PERPUSTAKAAN MODERN</a>
             <p>Platform katalog dan sirkulasi buku yang membantu pengunjung, anggota, dan admin mengelola literasi dengan lebih rapi.</p>
         </div>
         <div class="footer-links">

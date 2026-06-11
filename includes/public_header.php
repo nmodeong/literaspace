@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($pageTitle ?? 'Perpustakaan') ?></title>
+    <link rel="icon" type="image/x-icon" href="/perpustakaan/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -32,7 +33,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <line x1="23" y1="16" x2="18" y2="15.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
         <line x1="23" y1="19" x2="18" y2="18.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
     </svg>
-    PERPUSTAKAAN MODEREN
+    PERPUSTAKAAN MODERN
 </a>    <button class="nav-toggle" onclick="document.body.classList.toggle('nav-open')">Menu</button>
     <div class="nav-links">
        <a href="<?= url('index.php') ?>" <?= $currentPage === 'index.php' ? 'class="active"' : '' ?>>Katalog</a>
