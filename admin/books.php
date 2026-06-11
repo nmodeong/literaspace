@@ -1,6 +1,38 @@
 <?php
 $pageTitle = 'Kelola Buku';
 require_once __DIR__ . '/../includes/admin_header.php';
+// Fungsi upload ke Supabase Storage
+function upload_to_supabase($fileKey, $bucket) {
+    if (!isset($_FILES[$fileKey]) || $_FILES[$fileKey]['error'] !== UPLOAD_ERR_OK) {
+        return null;
+    }
+    $file = $_FILES[$fileKey];
+    $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $filename = 'img_' . uniqid() . mt_rand() . '.' . $ext;
+
+    $supabaseUrl = rtrim(getenv('SUPABASE_URL') ?: 'https://iehvfnpjicvhvzglmpjz.supabase.co', '/');
+    $supabaseKey = getenv('SUPABASE_KEY');
+    $endpoint    = "{$supabaseUrl}/storage/v1/object/{$bucket}/{$filename}";
+
+    $ch = curl_init($endpoint);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => file_get_contents($file['tmp_name']),
+        CURLOPT_HTTPHEADER     => [
+            'Authorization: Bearer ' . $supabaseKey,
+            'Content-Type: ' . $file['type'],
+            'x-upsert: true'
+        ]
+    ]);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_exec($ch);
+    curl_close($ch);
+
+    return ($code >= 200 && $code < 300)
+        ? "{$supabaseUrl}/storage/v1/object/public/{$bucket}/{$filename}"
+        : null;
+}
 
 // ====================== CRUD KATEGORI ======================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -60,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'stock'       => max(0, (int) ($_POST['stock'] ?? 0)),
     ];
 
-    $cover = upload_image('cover', 'covers');
+     $cover = upload_to_supabase('cover', 'books');
 
     if ($action === 'create') {
         $data['available_stock'] = $data['stock'];
@@ -266,8 +298,7 @@ $books = $stmt->fetchAll();
             <tbody>
                 <?php foreach ($books as $book): ?>
                     <tr>
-                        <td><img class="thumb" src="<?= e($book['cover'] ? url($book['cover']) : url('assets/css/placeholder-cover.svg')) ?>" alt=""></td>
-                        <td><strong><?= e($book['title']) ?></strong><br><span class="muted"><?= e($book['author']) ?></span></td>
+                    <img class="thumb" src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt="">                        <td><strong><?= e($book['title']) ?></strong><br><span class="muted"><?= e($book['author']) ?></span></td>
                         <td><?= e($book['category'] ?? 'Umum') ?></td>
                         <td><?= e($book['available_stock']) ?> / <?= e($book['stock']) ?></td>
                         <td class="actions">
