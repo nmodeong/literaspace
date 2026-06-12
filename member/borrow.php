@@ -74,8 +74,7 @@ $books = $pdo->query("
 <div class="book-grid compact member-book-grid">
     <?php foreach ($books as $book): ?>
         <article class="book-card">
-            <img src="<?= e($book['cover'] ? url($book['cover']) : url('assets/css/placeholder-cover.svg')) ?>" alt="">
-            <div class="book-body">
+                <img src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">            <div class="book-body">
                 <span class="badge"><?= e($book['category'] ?? 'Umum') ?></span>
                 <h3><?= e($book['title']) ?></h3>
                 <p><?= e($book['author']) ?></p>
