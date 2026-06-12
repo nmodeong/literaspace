@@ -79,7 +79,7 @@ $latestBooks = $pdo->query("
                 <div><span>Kesiapan katalog</span><strong><?= $contentStats['books'] > 0 ? 'Siap' : 'Belum siap' ?></strong></div>
                 <i><b style="width: <?= $contentStats['books'] > 0 ? 100 : 12 ?>%"></b></i>
             </div>
-        </div>
+        </div> 
     </section>
 </div>
 
@@ -94,8 +94,7 @@ $latestBooks = $pdo->query("
     <div class="book-grid compact admin-books-preview">
         <?php foreach ($latestBooks as $book): ?>
             <article class="book-card">
-                <img src="<?= e($book['cover'] ? url($book['cover']) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">
-                <div class="book-body">
+                    <img src="<?= e($book['cover'] ? (str_starts_with($book['cover'], 'http') ? $book['cover'] : url($book['cover'])) : url('assets/css/placeholder-cover.svg')) ?>" alt="Cover <?= e($book['title']) ?>">                <div class="book-body">
                     <span class="badge"><?= e($book['category']) ?></span>
                     <h3><?= e($book['title']) ?></h3>
                     <p><?= e($book['author']) ?></p>
